@@ -1,0 +1,1 @@
+{"schema_version":1,"id":"F07","name":"command_ack_timeout","run_duration_ms":10000,"faults":[{"id":"F07-A","name":"ACK unavailable","type":"command_ack_timeout","severity":"critical","start_ms":2000,"duration_ms":3000}],"expected":{"detection_max_ms":100,"action":"LAND","recovery":true}}

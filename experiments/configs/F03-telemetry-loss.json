@@ -1,0 +1,1 @@
+{"schema_version":1,"id":"F03","name":"telemetry_loss","run_duration_ms":10000,"faults":[{"id":"F03-A","name":"complete telemetry loss","type":"telemetry_loss","severity":"critical","start_ms":2000,"duration_ms":3000}],"expected":{"detection_max_ms":100,"action":"LAND","recovery":true}}

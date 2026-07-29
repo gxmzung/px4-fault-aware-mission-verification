@@ -23,7 +23,7 @@ HealthState battery_state(double percent, const TelemetryRules& rules) {
   return HealthState::Healthy;
 }
 
-HealthState aggregate(const std::array<SignalHealth, 7>& signals) {
+HealthState aggregate(const std::array<SignalHealth, 8>& signals) {
   HealthState result = HealthState::Healthy;
   for (const auto& signal : signals) {
     if (severity(signal.state) > severity(result)) result = signal.state;
@@ -52,6 +52,7 @@ std::string_view to_string(TelemetrySignal signal) {
     case TelemetrySignal::Battery: return "BATTERY";
     case TelemetrySignal::CommandAck: return "COMMAND_ACK";
     case TelemetrySignal::MissionSync: return "MISSION_SYNC";
+    case TelemetrySignal::OffboardHeartbeat: return "OFFBOARD_HEARTBEAT";
   }
   return "UNKNOWN_SIGNAL";
 }
@@ -64,7 +65,7 @@ TelemetryHealthMonitor::TelemetryHealthMonitor(const time::IClock& clock, Teleme
 
 HealthAssessment TelemetryHealthMonitor::evaluate(const TelemetrySnapshot& snapshot) {
   const auto now = clock_.now();
-  std::array<SignalHealth, 7> signals{{
+  std::array<SignalHealth, 8> signals{{
       {TelemetrySignal::Heartbeat, freshness_state(now, snapshot.heartbeat, rules_.heartbeat)},
       {TelemetrySignal::Gps, freshness_state(now, snapshot.gps, rules_.gps)},
       {TelemetrySignal::Position, freshness_state(now, snapshot.position, rules_.position)},
@@ -73,6 +74,8 @@ HealthAssessment TelemetryHealthMonitor::evaluate(const TelemetrySnapshot& snaps
       {TelemetrySignal::CommandAck, freshness_state(now, snapshot.command_ack, rules_.command_ack)},
       {TelemetrySignal::MissionSync,
        freshness_state(now, snapshot.mission_sync, rules_.mission_sync)},
+      {TelemetrySignal::OffboardHeartbeat,
+       freshness_state(now, snapshot.offboard_heartbeat, rules_.offboard_heartbeat)},
   }};
 
   const auto candidate = aggregate(signals);

@@ -1,6 +1,6 @@
 # Fault-Aware Mission Verification for PX4-Based Autonomous UAV Systems
 
-**STATUS: Phase 2 — deterministic health monitoring and failsafe policy**
+**STATUS: Phase 3 — deterministic fault-injection scenarios**
 
 This repository currently provides a deterministic software framework for expressing and testing high-level UAV mission states and command constraints.
 
@@ -55,12 +55,15 @@ The command guard validates commands but never executes them. The vehicle adapte
 - worst-severity aggregation and configurable healthy-sample hysteresis
 - configurable degraded/critical/lost failsafe actions
 - explicit coordination tests from health decisions to mission events
+- deterministic fault scheduler with inclusive-start/exclusive-end intervals
+- telemetry and command-effect fault injector
+- validated JSON scenario loader
+- twelve versioned fault configurations (`F01`–`F12`)
 
-The verified runner currently discovers **54 test cases with 126 assertions**. This count reflects the actual Catch2 run, not a target quota.
+The verified runner currently discovers **71 test cases with 180 assertions**. This count reflects the actual Catch2 run, not a target quota.
 
 ## Not implemented
 
-- fault injection and scenario configuration
 - experiment runner, metrics, results, or plots
 - PX4 or MAVLink adapter
 - ROS2 nodes
@@ -89,6 +92,7 @@ No test uses `sleep()` or depends on wall-clock timing.
 
 - [Phase 1 architecture](docs/architecture/phase1-architecture.md)
 - [Phase 2 health and failsafe model](docs/architecture/phase2-health-and-failsafe.md)
+- [Phase 3 fault model](docs/architecture/phase3-fault-model.md)
 - [Transition model](docs/research/transition-model.md)
 - [Repository audit](docs/research/repository-audit.md)
 
@@ -98,4 +102,4 @@ The mission and health models are intentionally simplified and validated only ag
 
 ## Roadmap
 
-The next proposed phase adds repeatable fault scheduling and external scenario definitions. PX4/ROS2 work remains deferred until the virtual verification framework is stable.
+The next proposed phase expands requirement-linked unit, integration, and scenario verification and CI evidence. Comparative experiment execution and metrics remain a later phase. PX4/ROS2 work remains deferred until the virtual verification framework is stable.

@@ -14,6 +14,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
+FetchContent_Declare(
+  nlohmann_json
+  URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
+  URL_HASH SHA256=42f6e95cad6ec532fd372391373363b62a14af6d771056dbfc86160e6dfff7aa
+  DOWNLOAD_EXTRACT_TIMESTAMP FALSE
+)
+FetchContent_MakeAvailable(nlohmann_json)
+
 add_library(uavmv
   src/command/command.cpp
   src/command/command_guard.cpp
@@ -22,9 +30,14 @@ add_library(uavmv
   src/mission/mission_state_machine.cpp
   src/telemetry/telemetry_health_monitor.cpp
   src/failsafe/failsafe_supervisor.cpp
+  src/faults/fault_injector.cpp
+  src/faults/fault_scheduler.cpp
+  src/faults/fault_types.cpp
+  src/simulation/scenario_loader.cpp
   src/vehicle/virtual_fc.cpp
 )
 target_include_directories(uavmv PUBLIC include)
+target_link_libraries(uavmv PUBLIC nlohmann_json::nlohmann_json)
 
 if(MSVC)
   target_compile_options(uavmv PRIVATE /W4 /permissive-)
@@ -41,12 +54,17 @@ add_executable(uavmv_tests
   tests/unit/test_logging.cpp
   tests/unit/test_telemetry_health_monitor.cpp
   tests/unit/test_failsafe_supervisor.cpp
+  tests/unit/test_fault_injector.cpp
+  tests/unit/test_fault_scheduler.cpp
+  tests/unit/test_scenario_loader.cpp
   tests/integration/test_mission_flow.cpp
   tests/integration/test_health_supervision.cpp
+  tests/scenario/test_fault_scenarios.cpp
 )
 target_link_libraries(uavmv_tests PRIVATE uavmv Catch2::Catch2WithMain)
+target_compile_definitions(uavmv_tests PRIVATE UAVMV_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 
 add_test(
-  NAME phase1_and_phase2_tests
+  NAME mission_verification_tests
   COMMAND uavmv_tests --reporter compact --rng-seed 1 --out test-output.txt
 )

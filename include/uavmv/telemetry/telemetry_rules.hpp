@@ -22,6 +22,8 @@ struct TelemetryRules {
                                   time::Duration{5000}};
   FreshnessThresholds mission_sync{time::Duration{1000}, time::Duration{2000},
                                    time::Duration{5000}};
+  FreshnessThresholds offboard_heartbeat{time::Duration{500}, time::Duration{1000},
+                                         time::Duration{2000}};
   double battery_degraded_percent{30.0};
   double battery_critical_percent{15.0};
   double battery_lost_percent{5.0};

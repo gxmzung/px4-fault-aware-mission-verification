@@ -8,7 +8,7 @@ using uavmv::telemetry::HealthState;
 
 uavmv::telemetry::TelemetrySnapshot fresh(uavmv::time::TimePoint now) {
   const uavmv::telemetry::TimedValidity valid{now, true};
-  return {valid, valid, valid, valid, valid, valid, 100.0};
+  return {valid, valid, valid, valid, valid, valid, valid, 100.0};
 }
 
 struct Fixture {

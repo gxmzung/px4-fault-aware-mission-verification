@@ -1,0 +1,1 @@
+{"schema_version":1,"id":"F09","name":"offboard_heartbeat_loss","run_duration_ms":10000,"faults":[{"id":"F09-A","name":"offboard heartbeat invalid","type":"offboard_heartbeat_loss","severity":"critical","start_ms":2000,"duration_ms":3000}],"expected":{"detection_max_ms":100,"action":"LAND","recovery":true}}

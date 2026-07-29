@@ -1,0 +1,1 @@
+{"schema_version":1,"id":"F11","name":"telemetry_and_gps_degradation","run_duration_ms":10000,"faults":[{"id":"F11-A","name":"combined telemetry and GPS degradation","type":"telemetry_and_gps_degradation","severity":"critical","start_ms":2000,"duration_ms":3000,"magnitude":1200}],"expected":{"detection_max_ms":100,"action":"LAND","recovery":true}}

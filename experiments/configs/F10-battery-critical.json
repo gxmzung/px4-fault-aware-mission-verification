@@ -1,0 +1,1 @@
+{"schema_version":1,"id":"F10","name":"battery_critical","run_duration_ms":10000,"faults":[{"id":"F10-A","name":"critical battery percentage","type":"battery_critical","severity":"critical","start_ms":2000,"duration_ms":3000,"magnitude":10}],"expected":{"detection_max_ms":100,"action":"RETURN_TO_HOME","recovery":true}}

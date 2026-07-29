@@ -7,7 +7,7 @@ using uavmv::failsafe::FailsafeAction;
 using uavmv::telemetry::HealthState;
 
 uavmv::telemetry::HealthAssessment assessment(HealthState state) {
-  std::array<uavmv::telemetry::SignalHealth, 7> signals{};
+  std::array<uavmv::telemetry::SignalHealth, 8> signals{};
   return {signals, state};
 }
 

@@ -507,3 +507,11 @@ This completion note does not revise the original pre-implementation inventory i
 Phase 2 adds timestamped telemetry snapshots, configurable freshness/battery rules, explicit four-level signal and aggregate health, deterministic highest-severity precedence, healthy-sample recovery hysteresis, configurable mission-level failsafe actions, and structured health/failsafe records. The complete Phase 1–2 runner passes 54 test cases and 126 assertions in the recorded local run.
 
 Default thresholds and policies are software-test assumptions only. Phase 2 did not add fault injection, YAML scenarios, experiment results, PX4/ROS2 integration, dynamics, hardware validation, or flight testing.
+
+## 17. Phase 3 completion note
+
+**Completed:** 2026-07-30
+
+Phase 3 adds typed fault definitions, deterministic half-open scheduling, composable telemetry/command effects, a versioned JSON loader with validation, a dedicated offboard-heartbeat health signal, and twelve external configurations covering F01–F12. Scenario tests compose the scheduler and injector with the Phase 2 monitor and supervisor.
+
+The complete Phase 1–3 local runner passes 71 test cases and 180 assertions. No batch experiment runner, statistical result, plot, PX4/ROS2 integration, hardware validation, or flight testing was added. Scenario deadlines and expected actions are declared test oracles; quantitative detection-latency experiments remain pending.

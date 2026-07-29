@@ -13,7 +13,8 @@ enum class TelemetrySignal {
   Attitude,
   Battery,
   CommandAck,
-  MissionSync
+  MissionSync,
+  OffboardHeartbeat
 };
 
 struct SignalHealth {
@@ -22,7 +23,7 @@ struct SignalHealth {
 };
 
 struct HealthAssessment {
-  std::array<SignalHealth, 7> signals;
+  std::array<SignalHealth, 8> signals;
   HealthState overall;
 };
 

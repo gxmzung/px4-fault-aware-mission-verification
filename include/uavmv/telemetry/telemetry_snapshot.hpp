@@ -16,6 +16,7 @@ struct TelemetrySnapshot {
   TimedValidity attitude;
   TimedValidity command_ack;
   TimedValidity mission_sync;
+  TimedValidity offboard_heartbeat;
   double battery_percent{100.0};
 };
 
