@@ -1,0 +1,4 @@
+/build*/
+/.cache/
+*.jsonl
+*.log
