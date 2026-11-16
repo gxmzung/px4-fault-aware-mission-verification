@@ -1,0 +1,15 @@
+name: Legacy mission state machine preservation
+
+on:
+  push:
+    branches: [main, "chore/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  original-blob-and-demo:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source provenance and standalone C++17 demo
+        run: python3 -m unittest discover -s tests/legacy -p 'test_preserved_cpp_demo.py' -v
